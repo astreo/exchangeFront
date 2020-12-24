@@ -6,10 +6,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './navigation/header/header.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
