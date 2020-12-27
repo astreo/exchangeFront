@@ -1,5 +1,7 @@
-
-<table *ngIf="dataSource.data.length > 0" mat-table [dataSource]="dataSource">
+<div class="main-div" >
+  <div class="quote" fxFlex fxLayout="column" fxLayout.gt-md="row" fxLayoutGap.gt-md="30px" fxLayoutAlign="center center">
+    <section>
+<table *ngIf="!(loading$ | async)" mat-table [dataSource]="dataSource">
 
   <!-- ID Column -->
   <ng-container matColumnDef="currency">
@@ -9,17 +11,22 @@
 
   <!-- Name Column -->
   <ng-container matColumnDef="buyVal">
-    <th mat-header-cell *matHeaderCellDef>BUY</th>
-    <td mat-cell *matCellDef="let row"> {{row.buyVal}} </td>
+    <th class="mat-cell-number" mat-header-cell *matHeaderCellDef>BUY</th>
+    <td class="mat-cell-number" mat-cell *matCellDef="let row"> {{row.buyVal}} </td>
   </ng-container>
 
   <!-- Author Column -->
   <ng-container matColumnDef="sellVal">
-    <th mat-header-cell *matHeaderCellDef>SELL</th>
-    <td mat-cell *matCellDef="let row"> {{row.sellVal}} </td>
+    <th class="mat-cell-number" mat-header-cell *matHeaderCellDef>SELL</th>
+    <td class="mat-cell-number" mat-cell *matCellDef="let row"> {{row.sellVal}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
 </table>
+<mat-spinner *ngIf="loading$ | async"></mat-spinner>
+<button type="submit" mat-raised-button color="primary" (click)="getRatesFromAPI()" >Update</button>
+ </section>
+  </div>
+</div>

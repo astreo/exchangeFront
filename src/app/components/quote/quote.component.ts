@@ -55,4 +55,8 @@ export class QuoteComponent implements OnInit {
       });
   }
 
+  getRatesFromAPI(): void {
+    this.store.dispatch(new actions.LoadRates());
+  }
+
 }
