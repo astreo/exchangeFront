@@ -1,0 +1,30 @@
+<section>
+  <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>User Id</mat-label>
+        <input matInput placeholder="User Id" formControlName='userId'>
+        <mat-error *ngIf="ctrls.userId.invalid">{{getErrorMessage(ctrls.userId)}}</mat-error>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Amount</mat-label>
+        <input matInput placeholder="Amount" formControlName='amount'>
+        <mat-error *ngIf="ctrls.amount.invalid">{{getErrorMessage(ctrls.amount)}}</mat-error>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Currency</mat-label>
+        <input matInput placeholder="Currency" formControlName='currency'>
+        <mat-error *ngIf="ctrls.currency.invalid">{{getErrorMessage(ctrls.currency)}}</mat-error>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </p>
+
+    <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Submit</button>
+  </form>
+</section>
