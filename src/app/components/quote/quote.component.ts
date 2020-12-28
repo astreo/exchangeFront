@@ -45,7 +45,7 @@ export class QuoteComponent implements OnInit, OnDestroy {
     console.log('los rates:', this.rateItems);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.getRatesFromStoreSubscription.unsubscribe();
     this.loadedSubscription.unsubscribe();
   }

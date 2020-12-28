@@ -26,7 +26,7 @@ export class TransactionService {
       .pipe(
         map(
           (resp: any) => {
-            console.log('respuesta: ', resp.body)
+            console.log('respuesta: ', resp.body);
             return resp.body;
           }
         )
