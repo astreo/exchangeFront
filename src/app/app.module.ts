@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { QuoteComponent } from './components/quote/quote.component';
@@ -14,13 +14,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { appReducers } from './store/app.reducer';
 import { effectsArr } from './store/effects/index';
 import { HttpClientModule } from '@angular/common/http';
+import { PurchaseComponent } from './components/purchase/purchase.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     WelcomeComponent,
-    QuoteComponent
+    QuoteComponent,
+    PurchaseComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot(effectsArr),
   ],

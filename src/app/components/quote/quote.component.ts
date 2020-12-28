@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subscription } from 'rxjs';
@@ -6,15 +6,13 @@ import { Rate } from 'src/app/models/rate.model';
 import { AppState } from '../../store/app.reducer';
 import { Store } from '@ngrx/store';
 import { rate as actions } from '../../store/actions';
-import { LoadRates } from '../../store/actions/rate.actions';
-
 
 @Component({
   selector: 'app-quote',
   templateUrl: './quote.component.html',
   styleUrls: ['./quote.component.scss']
 })
-export class QuoteComponent implements OnInit {
+export class QuoteComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['currency', 'buyVal', 'sellVal'];
   dataSource = new MatTableDataSource([]);
@@ -27,7 +25,7 @@ export class QuoteComponent implements OnInit {
   rates$: Observable<Rate[]>;
   loaded$ = this.store.select(state => state.rate.loaded);
 
-  loadedSubsctiption = new Subscription();
+  loadedSubscription = new Subscription();
   getRatesFromStoreSubscription = new Subscription();
 
 
@@ -35,7 +33,7 @@ export class QuoteComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading$ = this.store.select(state => state.rate.loading);
-    this.loadedSubsctiption = this.loaded$.subscribe(loaded => {
+    this.loadedSubscription = this.loaded$.subscribe(loaded => {
       if (!loaded) {
         console.log('NO loaded', loaded);
         this.store.dispatch(new actions.LoadRates());
@@ -45,6 +43,11 @@ export class QuoteComponent implements OnInit {
       }
     });
     console.log('los rates:', this.rateItems);
+  }
+
+  ngOnDestroy() {
+    this.getRatesFromStoreSubscription.unsubscribe();
+    this.loadedSubscription.unsubscribe();
   }
 
   getRatesFromStore(): void {
